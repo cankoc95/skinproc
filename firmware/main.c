@@ -42,6 +42,19 @@
 	#define U1BRGVAL		9								// For 1 Mbps (HIGH SPEED)
 	#define U1BRGHVAL		1								// High Speed Mode
 
+//8x2 grid for skinproc v0.1b
+#elif defined(__8x2Shell)
+
+	// Sensor Dimensions
+	#define ROWS 			8
+	#define COLUMNS 		2
+	#define FIRSTROW		0
+	#define FIRSTCOL		0
+
+	// UART Configuration
+	#define U1BRGVAL		9								// For 1 Mbps (HIGH SPEED)
+	#define U1BRGHVAL		1								// High Speed Mode
+
 #elif defined(__9x6Shell)
 
 	// Sensor Dimensions
@@ -228,7 +241,7 @@ void main(void)
 	_TRISB13 = 0; LEDGREEN = 0;
 	_TRISB14 = 0; LEDYELLOW = 0;
 
-
+        Nop();
 
 
 	// Toggle LEDs to signal completion
@@ -291,7 +304,8 @@ void main(void)
                     
                         while (!U1STAbits.URXDA);
 			rxChar = U1RXREG;
-                        
+                        LEDYELLOW = ~LEDYELLOW;
+
 
 			switch (rxChar)
 			{
