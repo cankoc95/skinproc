@@ -55,6 +55,14 @@
 	#define U1BRGVAL		9								// For 1 Mbps (HIGH SPEED)
 	#define U1BRGHVAL		1								// High Speed Mode
 
+        // Data Timer Configuration
+	#define DATA_TMRVAL			49999					// For 100 Hz interrupt
+	#define DATA_TMRPRESCALE	0b01                                            // Prescale = 1:8
+
+        // 2k Hz Timer Configuration
+	#define TWO_K_TMRVAL		19999					// For 2k Hz interrupt
+	#define TWO_K_TMRPRESCALE	0b00					// Prescale = 1:1
+
 #elif defined(__9x6Shell)
 
 	// Sensor Dimensions
@@ -177,6 +185,8 @@ unsigned char state = IDLE;
 
 unsigned char frameComplete;
 
+static unsigned char CTS = 1;
+
 // ---------------------
 // FUNCTION DECLARATIONS
 // ---------------------
@@ -191,8 +201,8 @@ void adjustMux(void);
 void samplePixel(unsigned char, unsigned char);
 void sampleFrame(unsigned int);
 void pollPixel(unsigned char, unsigned char, unsigned char, unsigned char);
-void startScan(void);
-void stopScan(void);
+void startScan();
+void stopScan();
 
 
 void calibrateSkin(void);
@@ -201,9 +211,15 @@ void startTimer(void);
 void stopTimer(void);
 void pollColumn(unsigned char, unsigned char);
 
+void echoCommand();
+void echoChar(unsigned char);
+void sendSize();
+void sendTestFrame();
+void sendPayloadLength(unsigned int);
+
 unsigned char rxChar = 0;
 
-void main(void)
+int main()
 {
 	
 	unsigned char rxRow, rxCol;
@@ -292,6 +308,7 @@ void main(void)
         LEDYELLOW = 0;
         delay_ms(50);
         //rxChar = 'G';
+        startTimer();
 	while (1)
 	{
 
@@ -320,6 +337,7 @@ void main(void)
                                                         //Nop();
 
                                                         samplePixel(rxRow, rxCol);
+                                                        CTS = 0;
 							break;
 
 				case 'B':	// Sample Frame
@@ -328,7 +346,8 @@ void main(void)
 							while (!U1STAbits.URXDA);
 							sampPerH = U1RXREG;
 							sampleFrame( (unsigned int)(sampPerL) + ((unsigned int)(sampPerH) << 8) );
-							break;
+                                                        CTS = 0;
+                                                        break;
 
 				case 'C':	// Poll Pixel
 							// Wait for row, column, duration, sample period
@@ -362,6 +381,8 @@ void main(void)
                                 case 'G':	sendSize();
 							break;
                                 case 'T':       sendTestFrame();
+                                                        break;
+                                case 'Z':       CTS = 1; //clear to send
                                                         break;
 				default:	break;
 
@@ -483,9 +504,11 @@ void main(void)
 			if (state == SCANNING)
 			{
 				// Wait for complete frame
-				if (frameComplete)
+				if (frameComplete && CTS)
 				{
-					for (i = 0; i < ROWS; ++i)
+                                    echoChar('B');
+                                    sendPayloadLength(ROWS*COLUMNS*2);
+                                        for (i = 0; i < ROWS; ++i)
 					{
 						for (j = 0; j < COLUMNS; ++j)
 						{
@@ -496,7 +519,9 @@ void main(void)
 							U1TXREG = (unsigned char)(sample >> 8);
 						}
 					}
+                                        CTS = 0;
 					frameComplete = 0;
+                                        startTimer();
 				}
 
 				// ------------
@@ -510,6 +535,9 @@ void main(void)
 					{
 						stopScan();
 					}
+                                        else if (rxChar == 'Z') {
+                                            CTS = 1;
+                                        }
 
 				} // end if stop command
 
@@ -551,7 +579,6 @@ void handleT1Interrupt(void)
 
 	// Move onto next pixel (no delay -- handled by interrupt period)
 	advancePixel();
-
 }
 
 
@@ -571,6 +598,7 @@ void advancePixel(void)
 			row = 0;
 			// Raise flag to indicate completion of frame
 			frameComplete = 1;
+                        stopTimer();
 		}
 		else
 			row++;
@@ -639,6 +667,7 @@ void samplePixel(unsigned char rowCoord, unsigned char colCoord)
 
 	LEDRED = 1;
         echoCommand();
+        sendPayloadLength(4);
 	// Set multiplexers
 	row = rowCoord;
 	col = colCoord;
@@ -674,6 +703,7 @@ void sampleFrame(unsigned int sampPer)
 
 	LEDRED = 1;
         echoCommand();
+        sendPayloadLength(ROWS*COLUMNS*2);
 	// Iterate over pixels
 	for (row = 0; row < ROWS; ++row)
 	{
@@ -787,33 +817,25 @@ void startScan(void)
 	adjustMux();
 	delay_us(500);
 
-	// Clear timer, interrupt flag
-	TMR1 = 0;
-	_T1IF = 0;
-
-	// Enable timer interrupt, start timer
-	_T1IE = 1;
-	T1CONbits.TON = 1;
-
 	state = SCANNING;
 	LEDRED = 1;
+        startTimer();
 }
 
-
-void stopScan(void)
+void stopScan()
 {
-	// Disable timer interrupt, stop timer
-	_T1IE = 0;
-	T1CONbits.TON = 0;
 
+        stopTimer();
 	state = IDLE;
 	LEDRED = 0;
 }
 
-void sendSize(void)
+
+void sendSize()
 {
     LEDRED = 1;
     echoCommand();
+    sendPayloadLength(2);
     while (U1STAbits.UTXBF);
     U1TXREG = (unsigned char) ROWS;
     while (U1STAbits.UTXBF);
@@ -822,10 +844,26 @@ void sendSize(void)
     LEDRED = 0;
 }
 
-void echoCommand(void)
+void echoCommand()
+{
+    echoChar(rxChar);
+}
+
+void echoChar(unsigned char command)
 {
     while (U1STAbits.UTXBF);
-    U1TXREG = rxChar;
+    U1TXREG = command;
+}
+
+void sendPayloadLength(unsigned int len)
+{
+    while (len >= 255) {
+        while (U1STAbits.UTXBF);
+        U1TXREG = (char) 255;
+        len = len - 255;
+    }
+    while (U1STAbits.UTXBF);
+    U1TXREG = (char) len;
 }
 
 void sendTestFrame(void)
@@ -948,6 +986,7 @@ void returnCalibration(void)
 
 void startTimer(void)
 {
+        setupTimer(TWO_K_TMRPRESCALE, TWO_K_TMRVAL % 256, TWO_K_TMRVAL >> 8);
 	// Clear timer, interrupt flag
 	TMR1 = 0;
 	_T1IF = 0;
