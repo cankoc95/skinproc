@@ -108,7 +108,7 @@ void setupUART(void)
 	U1MODEbits.LPBACK 	= 0;				// Loopback disabled
 	U1MODEbits.ABAUD 	= 0;				// Auto-baud disabled
 	U1MODEbits.URXINV 	= 0;				// U1RX idle state is 1
-	U1MODEbits.BRGH 	= 0; //U1BRGHVAL;		// High-speed mode, 0 for lowspeed buspirate
+	U1MODEbits.BRGH 	= 0b01; //U1BRGHVAL;		// High-speed mode, 0 for lowspeed buspirate
 	U1MODEbits.PDSEL 	= 0b00;				// 8-bit, no parity
 	U1MODEbits.STSEL 	= 0;				// 1 stop bit
 
@@ -136,7 +136,7 @@ void setupUART(void)
 		Desired Baud Rate = (Fcy)/(16 * (U1BRG + 1))
 		U1BRG = (Fcy/Desired Baud Rate)/(16) - 1
 	*/
-	U1BRG = 21; //U1BRGVAL; //21 for buspirate; //86 for high speed;
+	U1BRG = 86; //U1BRGVAL; //21 for buspirate; //86 for high speed;
 
 
 	// Enable UART
