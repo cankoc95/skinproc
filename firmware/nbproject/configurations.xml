@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>setup.h</itemPath>
       <itemPath>/Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.h</itemPath>
+      <itemPath>tactile_funcs.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,10 +18,9 @@
       <itemPath>main.c</itemPath>
       <itemPath>delay.s</itemPath>
       <itemPath>init_default.c</itemPath>
-      <itemPath>stopwatch.c</itemPath>
       <itemPath>setup.c</itemPath>
       <itemPath>/Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c</itemPath>
-      <itemPath>tactile_funcs.h</itemPath>
+      <itemPath>tactile_funcs.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -80,8 +80,7 @@
         <property key="enable-short-double" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
-        <property key="extra-include-directories"
-                  value="../../../shared;../../imageproc-lib"/>
+        <property key="extra-include-directories" value="../../imageproc-lib"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>

@@ -164,28 +164,10 @@ void setupSkin(void)
 	_TRISG6 = 0; _LATG6 = 1;
 	_TRISD5 = 0; _LATD5 = 1;
 
-/*
-	// Initialize sensor array
-	for (i = 0; i < ROWS; ++i)
-		for (j = 0; j < COLUMNS; ++j)
-		{
-			offset[i][j] = 0;
-			for (k = 0; k < FILTERLEN + 1; ++k)
-				sensor[i][j][k] = 0;
-		}
+        // Setup LEDs
+        _TRISB12 = 0; LEDRED = 0;
+        _TRISB13 = 0; LEDGREEN = 0;
+        _TRISB14 = 0; LEDYELLOW = 0;
 
-	// Initialize tactileState variable
-	tactileState = 0;
-
-
-	// Initialize current row, column indices
-	row = 0;
-	col = 0;
-	frameComplete = 0;
-
-	// Adjust multiplexer inputs
-	adjustMux();
-	delay_us(500);
-*/
 }
 

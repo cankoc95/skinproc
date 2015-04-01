@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c delay.s init_default.c stopwatch.c setup.c /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c delay.s init_default.c setup.c /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c tactile_funcs.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/delay.o ${OBJECTDIR}/init_default.o ${OBJECTDIR}/stopwatch.o ${OBJECTDIR}/setup.o ${OBJECTDIR}/_ext/1190720982/sclock.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/delay.o.d ${OBJECTDIR}/init_default.o.d ${OBJECTDIR}/stopwatch.o.d ${OBJECTDIR}/setup.o.d ${OBJECTDIR}/_ext/1190720982/sclock.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/delay.o ${OBJECTDIR}/init_default.o ${OBJECTDIR}/setup.o ${OBJECTDIR}/_ext/1190720982/sclock.o ${OBJECTDIR}/tactile_funcs.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/delay.o.d ${OBJECTDIR}/init_default.o.d ${OBJECTDIR}/setup.o.d ${OBJECTDIR}/_ext/1190720982/sclock.o.d ${OBJECTDIR}/tactile_funcs.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/delay.o ${OBJECTDIR}/init_default.o ${OBJECTDIR}/stopwatch.o ${OBJECTDIR}/setup.o ${OBJECTDIR}/_ext/1190720982/sclock.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/delay.o ${OBJECTDIR}/init_default.o ${OBJECTDIR}/setup.o ${OBJECTDIR}/_ext/1190720982/sclock.o ${OBJECTDIR}/tactile_funcs.o
 
 # Source Files
-SOURCEFILES=main.c delay.s init_default.c stopwatch.c setup.c /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c
+SOURCEFILES=main.c delay.s init_default.c setup.c /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c tactile_funcs.c
 
 
 CFLAGS=
@@ -86,72 +86,72 @@ ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/init_default.o: init_default.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/init_default.o.d 
 	@${RM} ${OBJECTDIR}/init_default.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  init_default.c  -o ${OBJECTDIR}/init_default.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/init_default.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  init_default.c  -o ${OBJECTDIR}/init_default.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/init_default.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/init_default.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/stopwatch.o: stopwatch.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/stopwatch.o.d 
-	@${RM} ${OBJECTDIR}/stopwatch.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  stopwatch.c  -o ${OBJECTDIR}/stopwatch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/stopwatch.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/stopwatch.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/setup.o: setup.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/setup.o.d 
 	@${RM} ${OBJECTDIR}/setup.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  setup.c  -o ${OBJECTDIR}/setup.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/setup.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  setup.c  -o ${OBJECTDIR}/setup.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/setup.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/setup.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/_ext/1190720982/sclock.o: /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1190720982" 
 	@${RM} ${OBJECTDIR}/_ext/1190720982/sclock.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1190720982/sclock.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  -o ${OBJECTDIR}/_ext/1190720982/sclock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1190720982/sclock.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  -o ${OBJECTDIR}/_ext/1190720982/sclock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1190720982/sclock.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1190720982/sclock.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/tactile_funcs.o: tactile_funcs.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/tactile_funcs.o.d 
+	@${RM} ${OBJECTDIR}/tactile_funcs.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  tactile_funcs.c  -o ${OBJECTDIR}/tactile_funcs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/tactile_funcs.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/tactile_funcs.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/init_default.o: init_default.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/init_default.o.d 
 	@${RM} ${OBJECTDIR}/init_default.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  init_default.c  -o ${OBJECTDIR}/init_default.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/init_default.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  init_default.c  -o ${OBJECTDIR}/init_default.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/init_default.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/init_default.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/stopwatch.o: stopwatch.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/stopwatch.o.d 
-	@${RM} ${OBJECTDIR}/stopwatch.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  stopwatch.c  -o ${OBJECTDIR}/stopwatch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/stopwatch.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/stopwatch.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/setup.o: setup.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/setup.o.d 
 	@${RM} ${OBJECTDIR}/setup.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  setup.c  -o ${OBJECTDIR}/setup.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/setup.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  setup.c  -o ${OBJECTDIR}/setup.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/setup.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/setup.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/_ext/1190720982/sclock.o: /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1190720982" 
 	@${RM} ${OBJECTDIR}/_ext/1190720982/sclock.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1190720982/sclock.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  -o ${OBJECTDIR}/_ext/1190720982/sclock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1190720982/sclock.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../../shared" -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	${MP_CC} $(MP_EXTRA_CC_PRE)  /Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c  -o ${OBJECTDIR}/_ext/1190720982/sclock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1190720982/sclock.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1190720982/sclock.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/tactile_funcs.o: tactile_funcs.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/tactile_funcs.o.d 
+	@${RM} ${OBJECTDIR}/tactile_funcs.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  tactile_funcs.c  -o ${OBJECTDIR}/tactile_funcs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/tactile_funcs.o.d"        -g -omf=elf -D__9x6Shell -O0 -I"../../imageproc-lib" -D__8x2Shell -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/tactile_funcs.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
