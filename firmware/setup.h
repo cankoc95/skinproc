@@ -16,17 +16,17 @@
 #define LEDRED			_LATB12
 #define LEDGREEN		_LATB13
 #define LEDYELLOW		_LATB14
-#define SELECT_CELLS            0
+#define IGNORE_CELLS            0
 
-#define TACTILE_MODE_A           0x41
-#define TACTILE_MODE_B           0x42
-#define TACTILE_MODE_C           0x43
-#define TACTILE_MODE_D           0x44
-#define TACTILE_MODE_E           0x45
-#define TACTILE_MODE_F           0x46
-#define TACTILE_MODE_G           0x47
-#define TACTILE_MODE_T           0x54
-#define CTS                      0x5A //'Z'
+#define TACTILE_MODE_A          0x41
+#define TACTILE_MODE_B          0x42
+#define TACTILE_MODE_C          0x43
+#define TACTILE_MODE_D          0x44
+#define TACTILE_MODE_E          0x45
+#define TACTILE_MODE_F          0x46
+#define TACTILE_MODE_G          0x47
+#define TACTILE_MODE_T          0x54
+#define CTS                     0x5A //'Z'
 
 
 // --------------
@@ -72,8 +72,8 @@
 	#define TEN_K_TMRPRESCALE	0b00					// Prescale = 1:1
 
         // ignore certain cells
-        #define SELECT_CELLS            0                                                 //how many cells are populated
-        //int select_list[8*2] = {0,0,1,0,2,0,3,0,4,1,5,1,6,1,7,1};                 //cells that are populated
+        #define IGNORE_CELLS            8                                                 //how many cells are to be ignored
+        extern const char select_list[(ROWS*COLUMNS-IGNORE_CELLS)*2];                //cells that are populated
                                                                                           //organized into (row,column),(row,column),...
 
 #elif defined(__9x6Shell)

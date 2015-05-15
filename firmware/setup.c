@@ -1,6 +1,10 @@
 #include <xc.h>
 #include "setup.h"
 
+#if defined(__8x2Shell)
+    const char select_list[(ROWS*COLUMNS-IGNORE_CELLS)*2] = {0,0,1,0,2,0,3,0,4,1,5,1,6,1,7,1};
+#endif
+
 void setupADC(void)
 {
 

@@ -8,22 +8,10 @@
 #ifndef TACTILE_FUNCS_H
 #define	TACTILE_FUNCS_H
 
-void setMode(unsigned char m);
 
 void samplePixel(unsigned char, unsigned char);
 void sampleFrame(unsigned int);
 void pollPixel(unsigned char, unsigned char, unsigned char, unsigned char);
-void sendSize();
-void echoChar(unsigned char);
-void sendPayloadLength(unsigned int);
-void sendTestFrame();
-void sendFullFrame();
-unsigned char fullFrame();
-
-unsigned int sampleADC();
-void sendSample(unsigned int sample);
-unsigned char nextUARTByte();
-unsigned char checkforUARTByte();
 
 void advancePixel(void);
 void adjustMux(void);
@@ -35,9 +23,25 @@ void stopScan();
 void startTimer(void);
 void stopTimer(void);
 
+void setMode(unsigned char m);
+unsigned char fullFrame();
 void clearCTS();
 void setCTS();
 unsigned char checkCTS();
+
+void setStartTime();
+void sendCurrentTime();
+void sendTestFrame();
+void sendFullFrame();
+void sendPayloadLength(unsigned int);
+void sendSize();
+void sendSample(unsigned int sample);
+
+void echoChar(unsigned char c);
+unsigned char nextUARTByte();
+unsigned char checkforUARTByte();
+
+unsigned int sampleADC();
 
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void);
 void handleT1Interrupt(void);

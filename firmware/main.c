@@ -96,14 +96,14 @@ int main() {
                     // Wait for row, column coordinates
                     rxRow = nextUARTByte();
                     rxCol = nextUARTByte();
-                    samplePixel(rxRow, rxCol);
                     clearCTS();
+                    samplePixel(rxRow, rxCol);
                     break;
                 case TACTILE_MODE_B:	// Sample Frame
                     sampPerL = nextUARTByte();
                     sampPerH = nextUARTByte();
-                    sampleFrame( (unsigned int)(sampPerL) + ((unsigned int)(sampPerH) << 8) );
                     clearCTS();
+                    sampleFrame( (unsigned int)(sampPerL) + ((unsigned int)(sampPerH) << 8) );
                     break;
                 case TACTILE_MODE_C:	// Poll Pixel
                     // Wait for row, column, duration, sample period
@@ -111,6 +111,7 @@ int main() {
                     rxCol = nextUARTByte();
                     rxDur = nextUARTByte();
                     rxPer = nextUARTByte();
+                    clearCTS();
                     pollPixel(rxRow, rxCol, rxDur, rxPer);
                     break;
                 case TACTILE_MODE_D:	// Set Scan Rate
@@ -149,7 +150,9 @@ int main() {
         if (state == SCANNING) {
             // Wait for complete frame
             if (fullFrame() && checkCTS()) {
+                clearCTS();
                 sendFullFrame();
+                startTimer();
             }
 
             // ------------
