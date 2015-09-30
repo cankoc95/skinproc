@@ -5,7 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>setup.h</itemPath>
-      <itemPath>/Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.h</itemPath>
+      <itemPath>/Users/Can/imageproc-lib/sclock.h</itemPath>
       <itemPath>tactile_funcs.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -19,7 +19,7 @@
       <itemPath>delay.s</itemPath>
       <itemPath>init_default.c</itemPath>
       <itemPath>setup.c</itemPath>
-      <itemPath>/Users/jgoldberg/MPLABXProjects/biomimetics_git/imageproc-lib/sclock.c</itemPath>
+      <itemPath>/Users/Can/imageproc-lib/sclock.c</itemPath>
       <itemPath>tactile_funcs.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
